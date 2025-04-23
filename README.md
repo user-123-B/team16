@@ -16,8 +16,10 @@
 開發物件Cat.h,Cat.cpp
 Readme.md編輯撰寫
 UML圖製作
+
 張紘睿:開發物件Pet.h,Pet.cpp
 Readme.md編輯撰寫
+
 張育嘉:開發物件Dog.h,Dog.cpp
 Readme.md編輯撰寫
 PPT製作
