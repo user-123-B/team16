@@ -4,11 +4,12 @@
 # 專題題目:養寵物(PET)
 # 程式介紹:
 此程式為一領養、養成寵物程式，可讓人在程式中找尋到生命力，可以無負擔的扶養，無經費消耗，不需要幫他們洗澡，非常人性，進入程式即可立即領養一隻自己心愛的貓或狗，開啟「我獨自養成」。
-# UML圖:
+# UML圖介紹說明:
 private：
 name: string — 寵物的名字
 hunger: int — 飢餓值
 happiness: int — 快樂值
+
 public：
 Pet(name: const string&) — 建構子，用名字初始化。
 virtual ~Pet() — 虛擬析構子，方便子類別正確釋放資源。
@@ -17,6 +18,14 @@ virtual play() = 0 — 虛擬函式，玩耍行為，必須由子類別實作。
 virtual sleep() = 0 — 虛擬函式，睡覺行為，必須由子類別實作。
 showStatus(): void — 顯示寵物當前狀態。
 getName(): string — 取得寵物名字。
+
+Other 屬性：
+eatCount: int — 記錄吃了幾次。
+method：
+Cat(name) — 建構子。
+eat() — 吃食物，降低飢餓。
+play() — 玩耍，增加快樂。
+sleep() — 睡覺，恢復狀態。
 
 
 # 程式規則:
