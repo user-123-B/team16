@@ -21,8 +21,10 @@ getName(): string — 取得寵物名字。
 
 Other 屬性：
 eatCount: int — 記錄吃了幾次。
+
 method：
 Cat(name) — 建構子。
+Dog(name) — 建構子。
 eat() — 吃食物，降低飢餓。
 play() — 玩耍，增加快樂。
 sleep() — 睡覺，恢復狀態。
