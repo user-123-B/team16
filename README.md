@@ -17,7 +17,7 @@ public：
 
 Pet(name: const string&) — 建構子，用名字初始化。
 
-virtual ~Pet() — 虛擬析構子，方便子類別正確釋放資源。
+virtual ~Pet() — 虛擬解構子，方便子類別正確釋放資源。
 
 virtual eat() = 0 — 虛擬函式，吃東西行為，必須由子類別實作。
 
