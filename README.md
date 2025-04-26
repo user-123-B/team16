@@ -53,17 +53,26 @@ Run the code之後，按下數字鍵 1或2，選取自己想要領養的動物�
 # 程式畫面截圖:
 
 # 分工資訊:
-呂阡旗(組長):開發物件main.cpp
+呂阡旗(組長):
+開發物件main.cpp
+
 開發物件Cat.h,Cat.cpp
-Readme.md編輯撰寫
-UML圖製作
 
-張紘睿:開發物件Pet.h,Pet.cpp
 Readme.md編輯撰寫
 
-張育嘉:開發物件Dog.h,Dog.cpp
+張紘睿:
+開發物件Pet.h,Pet.cpp
+
 Readme.md編輯撰寫
+
+張育嘉:
+開發物件Dog.h,Dog.cpp
+
+Readme.md編輯撰寫
+
 PPT製作
+
+UML圖製作
 
 
 
