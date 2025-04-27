@@ -50,7 +50,10 @@ sleep() — 睡覺，恢復狀態。
 Run the code之後，按下數字鍵 1或2，選取自己想要領養的動物，並為其命名，命名不可包含空格 ; 之後按下數字鍵 1.2.3.4分別代表，吃食物、玩耍、睡覺、以及查看狀態，狀態分為飢餓值以及快樂值，初始狀態皆為50，吃一次食物飢餓值下降8，且每吃三次食物即會觸發特殊條件，特殊條件會使飢餓值上升4，快樂值上升8 ; 玩耍會使快樂值上升8，亦會使飢餓值上升4 ; 睡覺會使快樂值上升4，最後若是要離開程式，按下0即會離開。
 # 程式如何安裝執行(圖文講解):
 到VirtualPet檔案夾 下載所有內容檔 放到編譯器上即可開始
-# 程式畫面截圖:![image](https://github.com/user-attachments/assets/db855919-0a8a-4c42-84af-f6e946fef505)
+# 程式畫面截圖:
+
+![image](https://github.com/user-attachments/assets/db855919-0a8a-4c42-84af-f6e946fef505)
+
 ![image](https://github.com/user-attachments/assets/e066c1b0-48d8-4334-846a-10df18656b16)
 
 
