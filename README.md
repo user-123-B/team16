@@ -123,9 +123,9 @@ Run the code之後，按下數字鍵 1或2，選取自己想要領養的動物�
 到VirtualPet檔案夾 下載所有內容檔 放到編譯器上即可開始
 # 程式畫面截圖(輸出結果):
 
-![image](https://github.com/user-attachments/assets/db855919-0a8a-4c42-84af-f6e946fef505)
 
-![image](https://github.com/user-attachments/assets/e066c1b0-48d8-4334-846a-10df18656b16)
+
+
 
 
 
