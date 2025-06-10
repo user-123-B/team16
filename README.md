@@ -375,13 +375,24 @@ void Environment::display() const {
 到VirtualPet檔案夾 下載所有內容檔 放到編譯器上即可開始
 # 程式畫面截圖(輸出結果):
 ![image](https://github.com/user-attachments/assets/799f625e-8bf6-452c-99a7-7e5c5b0005d9)
+//
 ![image](https://github.com/user-attachments/assets/230a8621-e646-41d0-bfd0-0db0fe6fef70)
+//
 ![image](https://github.com/user-attachments/assets/116bc7f8-96e9-4543-a49f-05175426888f)
+//
 ![image](https://github.com/user-attachments/assets/640f6292-5902-4245-bfae-ba5e248ea84b)
+//
 //以下之程式執行截圖畫面為 eatCount, playCount, trainCount, sleepCount;抵達上限時會有之反應 以及如何解除解除之截圖
-![image](https://github.com/user-attachments/assets/b1012fdb-b15b-4472-a566-606108932589) //此張截圖為使用eat函示三次之後之結果
-![image](https://github.com/user-attachments/assets/dbc2bbaa-f8cd-45b3-aced-cf65994d9016) //此張截圖為抵達eatLimit後會有之反應 按下sleep之後所有之limit值皆會被重製
-![image](https://github.com/user-attachments/assets/eb4fcafb-e73a-42e8-902a-a22e566d8551) //此張截圖證明limit值被重新設定
+
+![image](https://github.com/user-attachments/assets/b1012fdb-b15b-4472-a566-606108932589)
+//
+//此張截圖為使用eat函示三次之後之結果
+![image](https://github.com/user-attachments/assets/dbc2bbaa-f8cd-45b3-aced-cf65994d9016)
+//
+//此張截圖為抵達eatLimit後會有之反應 按下sleep之後所有之limit值皆會被重製
+![image](https://github.com/user-attachments/assets/eb4fcafb-e73a-42e8-902a-a22e566d8551) 
+//
+//此張截圖證明limit值被重新設定
 
 
 # 分工資訊:
