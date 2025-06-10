@@ -23,7 +23,9 @@ protected:
 public:
 +Pet(...)
 建構子，初始化寵物基本資料。 
-
+Pet::Pet(const string& name, const string& breed, const string& color)
+    : name(name),breed(breed), color(color), hunger(50), happiness(50), bondLevel(0),
+      eatLimit(3), playLimit(3), trainLimit(2), sleepLimit(2) ,currentLocation(nullptr){}
 +~Pet()
 解構子。          
 
@@ -35,87 +37,304 @@ public:
 
 +showStatus() const
 顯示寵物狀態。const 表示此函式不會改變物件內部資料。 
+void Pet::showStatus() const {
+    cout << name << " 狀態：" << endl;
+    cout << "名字：" << name << endl;
+    cout << "品種：" << breed << endl;
+    cout << "顏色：" << color << endl;
+    cout << "飢餓值：" << hunger << endl;
+    cout << "快樂值：" << happiness << endl;
+    cout << "情感連結：" << bondLevel << "/100" << endl;
+}
 
 +getName() const: string
 取得寵物名字       
+string Pet::getName() const {
+    return name;
+}
 
 +setLocation(Location*)
 設定寵物所在位置         
+void Pet::setLocation(Location* location) {
+    currentLocation = location;
+}
 
 +getLocation(): Location*
 取得目前所在位置    
+Location* Pet::getLocation() const {
+    return currentLocation;
+}
 
 +increaseBond(int)
 增加情感連結數值（最多 100）
-
+void Pet::increaseBond(int amount) {
+    bondLevel += amount;
+    if (bondLevel > 100) bondLevel = 100;
+}
 
 # Cat & Dog（繼承自 Pet）
 private:
 
 -eat,play,train,sleep Count :
 每日互動計數器，用來限制互動次數。
+int eatCount, playCount, trainCount, sleepCount;
 
 public:                      
 +Cat(...)  
 建構子，初始化屬性與父類構造。
-
+Cat::Cat(const string& name, const string& breed, const string& color) : Pet(name, breed, color),
+    eatCount(0), playCount(0), trainCount(0), sleepCount(0) {}
+    
 +eat()、+play() 、+train()、+sleep:
 覆寫（override）父類方法，定義貓的專屬反應與行為。
+void Cat::eat() {
+    if (eatCount >= eatLimit) {
+        cout << getName() << " 看著你：『你以為我還會吃嗎？我才不胖呢。』\n";
+        return;
+    }
+    hunger -= 8;
+    if (hunger < 0) hunger = 0;
+    eatCount++;
+    cout << getName() << " 吃了鮪魚罐頭真爽，飢餓值下降。\n";
+    increaseBond(4);
+    if (eatCount == eatLimit)
+        cout << getName() << " 吃太多了想吐了，打了個飽嗝：『喵～我超愛你 ??』\n";
+}
+
+void Cat::play() {
+    if (playCount >= playLimit) {
+        cout << getName() << " 對毛線球失去興趣，斜眼看你。\n";
+        return;
+    }
+    happiness += 10;
+    hunger += 4;
+    if (hunger > 100) hunger = 100;
+    if (happiness > 100) happiness = 100;
+    playCount++;
+    cout << getName() << " 跟你玩了毛線球，喵喵叫得很開心！\n";
+    increaseBond(6);
+}
+
+void Cat::train() {
+    if (trainCount >= trainLimit) {
+        cout << getName() << " 睜大眼睛：『誰想學握手？我是貓欸！』\n";
+        return;
+    }
+    trainCount++;
+    cout << getName() << " 才不想聽指令，但你硬是教牠握手...\n";
+    happiness += 2;
+    increaseBond(7);
+}
+
+void Cat::sleep() {
+    if (sleepCount >= sleepLimit) {
+        cout << getName() << " 在窗邊曬太陽，不想再睡了。\n";
+        return;
+    }
+    sleepCount++;
+    happiness += 5;
+    if (happiness > 100) happiness = 100;
+    cout << getName() << " 蜷縮成一團毛球熟睡，好舒服。\n";
+    increaseBond(5);
+}
 
 +reactToEnvironment():        
 根據 Location 的Environment 做出特定反應。
+void Cat::reactToEnvironment() {
+    if (getLocation() == nullptr) return;
+    
+    string weather = getLocation()->getEnvironment().getWeather();
+    int temp = getLocation()->getEnvironment().getTemperature();
+    
+    if (weather == "雨天") {
+        cout << getName() << " 討厭雨天，躲到沙發底下了\n";
+        happiness -= 10;
+    }
+    else if (temp > 30) {
+        cout << getName() << " 找陰涼處躺下，太熱了不想動\n";
+        happiness -= 5;
+    }
+}
 
 Dog 類別（繼承自 Pet） 幾乎與 Cat 相同，
 差別在於方法實作內容不同（例如狗喜歡晴天、會訓練接飛盤等）
+
++Dog(...)  
+建構子，初始化屬性與父類構造。
+Dog::Dog(const string& name, const string& breed, const string& color) : Pet(name, breed, color),
+    eatCount(0), playCount(0), trainCount(0), sleepCount(0) {}
+
++eat()、+play() 、+train()、+sleep:
+覆寫（override）父類方法，定義貓的專屬反應與行為。
+void Dog::eat() {
+    if (eatCount >= eatLimit) {
+        cout << getName() << " 旺旺，可能吃太飽了，想拉屎了。\n";
+        return;
+    }
+    hunger -= 10;
+    if (hunger < 0) hunger = 0;
+    eatCount++;
+    cout << getName() << " 狂吃 A5牛排 啃骨頭，好餓啊！\n";
+    increaseBond(2);
+    if (eatCount == eatLimit)
+        cout << getName() << " 撲過來舔你臉：『汪！你最棒！』\n";
+}
+void Dog::play() {
+    if (playCount >= playLimit) {
+        cout << getName() << " 累了，躺在地上喘氣...\n";
+        return;
+    }
+    happiness += 12;
+    hunger += 5;
+    if (hunger > 100) hunger = 100;
+    if (happiness > 100) happiness = 100;
+    playCount++;
+    cout << getName() << " 玩了丟球遊戲，開心得不得了！\n";
+    increaseBond(6);
+}
+void Dog::train() {
+    if (trainCount >= trainLimit) {
+        cout << getName() << " 旺旺，不太想再訓練了...\n";
+        return;
+    }
+    trainCount++;
+    happiness += 5;
+    increaseBond(8);
+    cout << getName() << " 接飛盤，好聰明！\n";
+}
+void Dog::sleep() {
+    if (sleepCount >= sleepLimit) {
+        cout << getName() << " 已經睡飽，吐舌頭。\n";
+        return;
+    }
+    sleepCount++;
+    trainCount = 0; // 睡覺後訓練次數歸零
+    eatCount = 0; // 睡覺後吃飯次數歸零
+    playCount = 0; // 睡覺後玩耍次數歸零
+    happiness += 4;
+    if (happiness > 100) happiness = 100;
+    cout << getName() << " 安穩地睡覺做美夢。\n";
+    increaseBond(5);
+}
+
++reactToEnvironment():        
+根據 Location 的Environment 做出特定反應。
+void Dog::reactToEnvironment() {
+    if (getLocation() == nullptr) return;
+    
+    string weather = getLocation()->getEnvironment().getWeather();
+    int temp = getLocation()->getEnvironment().getTemperature();
+    
+    if (weather == "晴天") {
+        cout << getName() << " 喜歡晴天，開心地搖尾巴\n";
+        happiness += 10;
+    }
+    else if (temp < 15) {
+        cout << getName() << " 覺得冷，縮成一團發抖\n";
+        happiness -= 8;
+    }
+}
 
 # Location
 private:   
 
 -name:
 地點名稱（如：家、公園）。
+string name;
 
 -env: Environment:
 地點的環境狀況，包括天氣與溫度。屬於「組合關係」。
+Environment env;
 
-public:                                                          
+public:    
+
++Location 建構子
+初始化地點與環境物件
+Location::Location(const string& n, const Environment& e): name(n), env(e) {}
+
 +setEnvironment(e)
 設定整個 Environment 狀態。 
+void Location::setEnvironment(const Environment& e) {
+    env = e;
+}
 
 +changeWeather(w)
 修改天氣（如「晴天」、「雨天」）。
+void Location::changeWeather(const string& w) {
+    env.setWeather(w);
+}
 
 +changeTemperature(t)
 修改溫度（攝氏）。    
+void Location::changeTemperature(int temp) {
+    env.setTemperature(temp);
+}
 
 +getName()
 取得地點名稱。      
+string Location::getName() const {
+    return name;
+}
 
 +getEnvironment()
 回傳 Environment 資料。 
+Environment Location::getEnvironment() const {
+    return env;
+}
 
 +display()
 印出地點狀態與環境。
+void Location::display() const {
+    cout << "地點: " << name << " | ";
+    env.display();
+}
 
 # Environment
 private: 
 
 -weather
 天氣（string，例如「晴  天」、「陰天」、「雨天」）。
+string weather;
 
 -temperature
 溫度（int，例如 25°C）。
+int temperature;
 
 public:
+
+Environment 建構子
+初始化天氣與溫度情況
+Environment::Environment(const string& w, int temp) : weather(w), temperature(temp) {}
+
 +setWeather(w)
-改變天氣狀態。                              
+改變天氣狀態。   
+void Environment::setWeather(const string& w) {
+    weather = w;
+}
 +setTemperature(t)
-改變溫度。                                      
+改變溫度。    
+void Environment::setTemperature(int temp) {
+    temperature = temp;
+}
+
 +getWeather()
-取得目前天氣。                            
+取得目前天氣。  
+string Environment::getWeather() const {
+    return weather;
+}
+
 +getTemperature()
-取得目前溫度。                              
+取得目前溫度。      
+int Environment::getTemperature() const {
+    return temperature;
+}
+
 +display()
 顯示環境資訊。
+void Environment::display() const {
+    cout << "天氣: " << weather 
+              << " | 溫度: " << temperature << "°C" << endl;
+}
 
 # 程式規則:
 程式規則說明：寵物成長遊戲
@@ -155,11 +374,14 @@ public:
 # 程式如何安裝執行(圖文講解):
 到VirtualPet檔案夾 下載所有內容檔 放到編譯器上即可開始
 # 程式畫面截圖(輸出結果):
-
-
-
-
-
+![image](https://github.com/user-attachments/assets/799f625e-8bf6-452c-99a7-7e5c5b0005d9)
+![image](https://github.com/user-attachments/assets/230a8621-e646-41d0-bfd0-0db0fe6fef70)
+![image](https://github.com/user-attachments/assets/116bc7f8-96e9-4543-a49f-05175426888f)
+![image](https://github.com/user-attachments/assets/640f6292-5902-4245-bfae-ba5e248ea84b)
+//以下之程式執行截圖畫面為 eatCount, playCount, trainCount, sleepCount;抵達上限時會有之反應 以及如何解除解除之截圖
+![image](https://github.com/user-attachments/assets/b1012fdb-b15b-4472-a566-606108932589) //此張截圖為使用eat函示三次之後之結果
+![image](https://github.com/user-attachments/assets/dbc2bbaa-f8cd-45b3-aced-cf65994d9016) //此張截圖為抵達eatLimit後會有之反應 按下sleep之後所有之limit值皆會被重製
+![image](https://github.com/user-attachments/assets/eb4fcafb-e73a-42e8-902a-a22e566d8551) //此張截圖證明limit值被重新設定
 
 
 # 分工資訊:
