@@ -390,6 +390,7 @@ void Environment::display() const {
 ![image](https://github.com/user-attachments/assets/dbc2bbaa-f8cd-45b3-aced-cf65994d9016)
 //
 //此張截圖為抵達eatLimit後會有之反應 按下sleep之後所有之limit值皆會被重製
+//
 ![image](https://github.com/user-attachments/assets/eb4fcafb-e73a-42e8-902a-a22e566d8551) 
 //
 //此張截圖證明limit值被重新設定
